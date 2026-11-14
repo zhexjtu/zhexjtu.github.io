@@ -1,0 +1,63 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import PostCard from '../components/PostCard.astro';
+import PublicationCard from '../components/PublicationCard.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import { news, profile, publications } from '../data/site';
+
+const posts = (
+  await getCollection('blog', ({ data }) => (import.meta.env.PROD ? !data.draft : true))
+).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+
+const recentPosts = posts.slice(0, 3);
+---
+
+<BaseLayout title={profile.name} description={profile.intro}>
+  <main class="site-shell">
+    <Hero />
+
+    <section class="section-block" aria-labelledby="news-heading">
+      <SectionHeading title="News" id="news-heading" />
+      <div class="news-list">
+        {
+          news.map((item) => (
+            <article class="news-item">
+              <strong>[{item.date}]</strong>{' '}
+              {item.href ? (
+                <a href={item.href} target="_blank" rel="noreferrer">{item.text}</a>
+              ) : (
+                item.text
+              )}
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="section-block" aria-labelledby="blog-heading">
+      <SectionHeading title="Blog" id="blog-heading" linkLabel="View all posts" linkHref="/blog/" />
+      {
+        recentPosts.length > 0 ? (
+          <div class="post-grid">
+            {recentPosts.map((post, index) => <PostCard post={post} featured={index === 0} />)}
+          </div>
+        ) : (
+          <div class="empty-state">Essays on LLM post-training, AI safety, and reinforcement learning are coming soon.</div>
+        )
+      }
+    </section>
+
+    <section class="section-block" aria-labelledby="publications-heading">
+      <SectionHeading title="Selected Publications/Projects" id="publications-heading" />
+      <p class="publication-intro">
+        The full list of my publications can be found on{' '}
+        <a href={profile.scholar} target="_blank" rel="noreferrer">Google Scholar</a>.
+      </p>
+      <div class="publication-list">
+        {publications.map((publication) => <PublicationCard publication={publication} />)}
+      </div>
+    </section>
+  </main>
+</BaseLayout>

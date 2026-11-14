@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteNav from '../components/SiteNav.astro';
+---
+
+<BaseLayout title="Page not found" description="The requested page could not be found.">
+  <main class="post-shell">
+    <SiteNav />
+    <div class="empty-state">
+      <p class="eyebrow">404</p>
+      <h1>Page not found</h1>
+      <p>The page may have moved or the address may be incorrect.</p>
+      <p><a class="button-link button-primary" href="/">Return home</a></p>
+    </div>
+  </main>
+</BaseLayout>

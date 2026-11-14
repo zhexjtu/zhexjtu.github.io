@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import { profile } from '../../data/site';
+
+const posts = (
+  await getCollection('blog', ({ data }) => (import.meta.env.PROD ? !data.draft : true))
+).sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+---
+
+<BaseLayout title="Blog" description={`Essays and technical notes from ${profile.name}.`}>
+  <main class="site-shell">
+    <SiteNav active="blog" />
+    <header class="blog-hero">
+      <p class="eyebrow">Research notes & technical essays</p>
+      <h1>Blog</h1>
+      <p>
+        Writing about LLM post-training, reinforcement learning, AI safety, multimodal evaluation,
+        and the engineering lessons behind research systems.
+      </p>
+    </header>
+
+    {
+      posts.length > 0 ? (
+        <div class="post-grid">
+          {posts.map((post, index) => <PostCard post={post} featured={index === 0} />)}
+        </div>
+      ) : (
+        <div class="empty-state">The first article is in progress. Check back soon.</div>
+      )
+    }
+  </main>
+</BaseLayout>

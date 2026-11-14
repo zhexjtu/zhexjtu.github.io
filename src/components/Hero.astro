@@ -1,0 +1,38 @@
+---
+import { profile } from '../data/site';
+---
+
+<section class="hero-card" aria-labelledby="profile-name">
+  <nav class="corner-nav" aria-label="Featured links">
+    <a class="button-subtle" href="/resume.pdf">CV</a>
+    <a class="button-primary" href="/blog/">Blog <span aria-hidden="true">↗</span></a>
+  </nav>
+
+  <div class="hero-copy">
+    <h1 id="profile-name">{profile.name}</h1>
+    <p class="hero-role">{profile.role}</p>
+    <p class="hero-intro">{profile.intro}</p>
+
+    <div class="social-links" aria-label="Profile links">
+      <a class="social-link" href={`mailto:${profile.email}`} aria-label={`Email ${profile.name}`}>
+        <span aria-hidden="true">@</span>
+      </a>
+      <a class="social-link" href={profile.linkedin} aria-label="LinkedIn profile" rel="me">
+        <span aria-hidden="true">in</span>
+      </a>
+      <a class="social-link" href={profile.scholar} aria-label="Google Scholar profile" rel="me">
+        <span aria-hidden="true">G</span>
+      </a>
+    </div>
+  </div>
+
+  {
+    profile.profileImage ? (
+      <img class="profile-image" src={profile.profileImage} alt={`Portrait of ${profile.name}`} />
+    ) : (
+      <div class="profile-visual" aria-label="Profile photo placeholder">
+        <span>PROFILE PHOTO</span>
+      </div>
+    )
+  }
+</section>

@@ -1,0 +1,18 @@
+---
+import { profile } from '../data/site';
+
+interface Props {
+  active?: 'home' | 'blog';
+}
+
+const { active } = Astro.props;
+---
+
+<header class="site-header">
+  <a class="site-name" href="/">{profile.name}</a>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a href="/" aria-current={active === 'home' ? 'page' : undefined}>Home</a>
+    <a href="/blog/" aria-current={active === 'blog' ? 'page' : undefined}>Blog</a>
+    <a href="/resume.pdf">CV</a>
+  </nav>
+</header>

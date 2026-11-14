@@ -1,0 +1,46 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => (import.meta.env.PROD ? !data.draft : true));
+
+  return posts.map((post) => ({
+    params: { id: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const formattedDate = post.data.publishedAt.toLocaleDateString('en-US', {
+  month: 'long',
+  day: 'numeric',
+  year: 'numeric',
+});
+---
+
+<BaseLayout title={post.data.title} description={post.data.description}>
+  <main class="post-shell">
+    <SiteNav active="blog" />
+    <article>
+      <header class="post-header">
+        <div class="post-meta">
+          <time datetime={post.data.publishedAt.toISOString()}>{formattedDate}</time>
+          {post.data.draft && <span class="draft-badge">Draft</span>}
+          {post.data.tags.map((tag) => <span class="post-tag">{tag}</span>)}
+        </div>
+        <h1>{post.data.title}</h1>
+        <p class="post-description">{post.data.description}</p>
+      </header>
+      <div class="post-body">
+        <Content />
+      </div>
+    </article>
+  </main>
+</BaseLayout>

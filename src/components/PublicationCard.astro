@@ -1,0 +1,38 @@
+---
+import type { Publication } from '../data/site';
+
+interface Props {
+  publication: Publication;
+}
+
+const { publication } = Astro.props;
+---
+
+<article class="publication-card">
+  <div class:list={['paper-art', `tone-${publication.tone}`]} aria-hidden="true">{publication.art}</div>
+  <div class="paper-copy">
+    <h3>
+      {publication.title}
+      <span class="publication-tags">
+        {publication.tags.map((tag) => <span class="publication-tag">{tag}</span>)}
+      </span>
+    </h3>
+    <p class="paper-authors" set:html={publication.authors} />
+    <p class="paper-venue">{publication.venue}</p>
+    <div class="paper-actions">
+      {
+        publication.links.map((link) => (
+          <a
+            class:list={['paper-action', { secondary: link.kind === 'secondary' }]}
+            href={link.href}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </div>
+    <p class="paper-summary">{publication.summary}</p>
+  </div>
+</article>
