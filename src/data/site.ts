@@ -31,7 +31,7 @@ export const publications: Publication[] = [
     venue: 'KDD 2026 Hands-on Tutorial',
     summary:
       'A hands-on tutorial on building multi-turn reinforcement learning systems for language models, from environment and reward design to trajectory training and evaluation.',
-    tags: ['LLM post-training', 'Multi-turn RL'],
+    tags: ['LLM Post-training', 'RL'],
     art: 'KDD\n2026',
     tone: 'charcoal',
     links: [],
@@ -43,7 +43,7 @@ export const publications: Publication[] = [
     venue: 'arXiv 2026',
     summary:
       'A learnable controller trained with GRPO chooses the token generation order for masked diffusion models, improving text-to-image alignment and multimodal understanding.',
-    tags: ['Multimodal generation', 'GRPO'],
+    tags: ['Masked Diffusion Model', 'GRPO'],
     art: 'ORDER',
     tone: 'blue',
     image: '/images/publications/Order.png',
@@ -57,7 +57,7 @@ export const publications: Publication[] = [
     venue: 'arXiv 2026',
     summary:
       'A training-free framework lets multimodal masked diffusion models revisit uncertain tokens during sampling, reducing error accumulation without auxiliary evaluators.',
-    tags: ['Masked diffusion', 'Self-correction'],
+    tags: ['Masked Diffusion Model', 'Self-Correction'],
     art: 'FREE\nCORRECTION',
     tone: 'green',
     image: '/images/publications/FreeCorrection.png',
@@ -75,7 +75,7 @@ export const publications: Publication[] = [
     venue: 'EMNLP 2025 Industry Track',
     summary:
       'GAP organizes black-box jailbreak search as a graph so attack paths can share useful strategies, while pruning reduces redundant model queries.',
-    tags: ['LLM safety', 'Automated red teaming'],
+    tags: ['LLM Safety', 'Automated Red Teaming'],
     art: 'GAP',
     tone: 'purple',
     image: '/images/publications/GAP.png',
@@ -91,7 +91,7 @@ export const publications: Publication[] = [
     venue: 'Findings of NAACL 2025',
     summary:
       'ATLA augments adversarial-trigger objectives to learn more transferable jailbreak suffixes and extract hidden system prompts with substantially fewer queries.',
-    tags: ['LLM safety', 'Adversarial ML'],
+    tags: ['LLM Safety', 'Automated Red Teaming'],
     art: 'ATLA',
     tone: 'charcoal',
     image: '/images/publications/ATLA.png',
@@ -109,7 +109,7 @@ export const publications: Publication[] = [
     venue: 'NAACL 2025 Industry Track · Oral',
     summary:
       'TurboFuzzLLM improves mutation-based black-box fuzzing to discover effective jailbreak templates with stronger search policies and lower query cost.',
-    tags: ['LLM safety', 'Fuzzing'],
+    tags: ['LLM Safety', 'Automated Red Teaming'],
     art: 'TURBO\nFUZZ',
     tone: 'green',
     image: '/images/publications/TurboFuzz.png',
@@ -126,7 +126,7 @@ export const publications: Publication[] = [
     venue: 'The Web Conference 2025',
     summary:
       'A retrieval-augmented hierarchy of global and adaptive prompt tokens improves few-shot policy generalization across MuJoCo and MetaWorld tasks.',
-    tags: ['Reinforcement learning', 'Decision transformers'],
+    tags: ['RL', 'Robotic Manipulation'],
     art: 'HPDT',
     tone: 'purple',
     image: '/images/publications/HPDT.png',
@@ -142,7 +142,7 @@ export const publications: Publication[] = [
     venue: 'arXiv 2021',
     summary:
       'Spacetimeformer represents each variable at each timestep as a token, allowing long-range Transformers to learn spatial and temporal relationships jointly.',
-    tags: ['Time series', 'Transformers'],
+    tags: ['Transformers', 'Time-Series Forecasting'],
     art: 'SPACE\nTIME',
     tone: 'blue',
     image: '/images/publications/LongRangeTransformer.png',
@@ -159,7 +159,7 @@ export const publications: Publication[] = [
     venue: 'arXiv 2026',
     summary:
       'SD-MAR builds controlled multi-image reasoning tasks and uses reinforcement learning to improve comparison, change attribution, and quantitative visual reasoning.',
-    tags: ['Multimodal reasoning', 'Reinforcement learning'],
+    tags: ['RL', 'Vision Language Models'],
     art: 'SD–MAR',
     tone: 'purple',
     image: '/images/publications/SD-MAR.png',
@@ -172,7 +172,7 @@ export const publications: Publication[] = [
     venue: 'ICLR 2023',
     summary:
       'PGrad aggregates principal directions from optimization trajectories to learn robust update directions that generalize across unseen domains.',
-    tags: ['Domain generalization', 'Optimization'],
+    tags: ['Optimization', 'Domain Generalization'],
     art: 'PGRAD',
     tone: 'blue',
     image: '/images/publications/PGrad.png',
@@ -189,7 +189,7 @@ export const publications: Publication[] = [
     venue: 'AAAI 2023 · Oral',
     summary:
       'WIGRAPH learns a global graph of word interactions and inserts graph-based message passing after the embedding layer to improve intrinsic text-model interpretability.',
-    tags: ['Interpretability', 'Graph learning'],
+    tags: ['Graph Neural Network', 'Interpretability'],
     art: 'WIGRAPH',
     tone: 'charcoal',
     image: '/images/publications/WIGRAPH.png',
