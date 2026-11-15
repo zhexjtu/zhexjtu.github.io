@@ -33,20 +33,22 @@ const { publication } = Astro.props;
     </h3>
     <p class="paper-authors" set:html={publication.authors} />
     <p class="paper-venue">{publication.venue}</p>
-    <div class="paper-actions">
-      {
-        publication.links.map((link) => (
-          <a
-            class:list={['paper-action', { secondary: link.kind === 'secondary' }]}
-            href={link.href}
-            target="_blank"
-            rel="noreferrer"
-          >
-            {link.label}
-          </a>
-        ))
-      }
-    </div>
+    {
+      publication.links.length > 0 && (
+        <div class="paper-actions">
+          {publication.links.map((link) => (
+            <a
+              class:list={['paper-action', { secondary: link.kind === 'secondary' }]}
+              href={link.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {link.label}
+            </a>
+          ))}
+        </div>
+      )
+    }
     <p class="paper-summary">{publication.summary}</p>
   </div>
 </article>

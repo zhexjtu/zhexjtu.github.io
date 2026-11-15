@@ -37,22 +37,35 @@ public/images/
 └── blog/             # Images used in blog posts
 ```
 
-Recommended publication filenames are already noted in `src/data/site.ts`:
+Current publication figures:
 
 ```text
-public/images/publications/atla.webp
-public/images/publications/hpdt.webp
-public/images/publications/pgrad.webp
-public/images/publications/st-maml.webp
+public/images/publications/ATLA.png
+public/images/publications/HPDT.png
+public/images/publications/PGrad.png
 ```
 
-After adding a file, uncomment its `image` property in `src/data/site.ts`. For example:
+Suggested filenames for the remaining publication rows:
+
+```text
+kdd-multiturn-rl.png
+sd-mar.png
+generation-order.png
+free-correction.png
+gap.png
+turbofuzzllm.png
+wigraph.png
+st-maml.png
+spacetimeformer.png
+```
+
+After adding another figure, add its `image` property in `src/data/site.ts`. For example:
 
 ```ts
-image: '/images/publications/atla.webp',
+image: '/images/publications/ST-MAML.png',
 ```
 
-For publication cards, use a 4:3 teaser figure or cropped screenshot around 1200 × 900 pixels. WebP is preferred for photographs and dense screenshots; PNG is appropriate when small text or line diagrams must remain sharp. Keep each file below roughly 700 KB when practical. A focused paper figure or architecture diagram usually works better than a screenshot of an entire PDF page.
+For publication rows, use the paper's main method or architecture diagram. Wide figures around a 2:1 aspect ratio work best. WebP is preferred for photographs and dense screenshots; PNG is appropriate when small text or line diagrams must remain sharp. Keep each file below roughly 700 KB when practical.
 
 For blog posts, create a directory named after the post and reference images with their public path:
 
