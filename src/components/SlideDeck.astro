@@ -1,0 +1,112 @@
+---
+interface Props {
+  title: string;
+  count: number;
+  imageBase: string;
+  downloadHref: string;
+}
+
+const { title, count, imageBase, downloadHref } = Astro.props;
+const slides = Array.from({ length: count }, (_, index) => index + 1);
+---
+
+<section class="slide-section" data-slide-deck aria-labelledby="slide-deck-title">
+  <div class="slide-section-header">
+    <div>
+      <p class="eyebrow">Companion presentation</p>
+      <h2 id="slide-deck-title">{title}</h2>
+      <p>Browse the {count}-slide deck here, or download the original PowerPoint.</p>
+    </div>
+    <a class="button-link button-subtle slide-deck-download" href={downloadHref} download>
+      Download PowerPoint
+    </a>
+  </div>
+
+  <div class="slide-stage">
+    <div
+      class="slide-deck"
+      tabindex="0"
+      data-slide-track
+      aria-label={`${title}, ${count} slides`}
+    >
+      {
+        slides.map((slideNumber, index) => {
+          const paddedNumber = String(slideNumber).padStart(2, '0');
+          return (
+            <figure class="slide-frame" data-slide>
+              <img
+                src={`${imageBase}/slide-${paddedNumber}.png`}
+                alt={`Slide ${slideNumber} of ${count} from the companion presentation`}
+                width="1280"
+                height="722"
+                loading={index === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
+              <figcaption>
+                Slide {slideNumber} of {count}
+              </figcaption>
+            </figure>
+          );
+        })
+      }
+    </div>
+
+    <div class="slide-controls" aria-label="Slide controls">
+      <button type="button" class="slide-control" data-slide-previous disabled>Previous</button>
+      <span class="slide-status" data-slide-status aria-live="polite">1 / {count}</span>
+      <button type="button" class="slide-control" data-slide-next>Next</button>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-slide-deck]').forEach((deck) => {
+    const track = deck.querySelector<HTMLElement>('[data-slide-track]');
+    const slides = Array.from(deck.querySelectorAll<HTMLElement>('[data-slide]'));
+    const previous = deck.querySelector<HTMLButtonElement>('[data-slide-previous]');
+    const next = deck.querySelector<HTMLButtonElement>('[data-slide-next]');
+    const status = deck.querySelector<HTMLElement>('[data-slide-status]');
+
+    if (!track || !previous || !next || !status || slides.length === 0) return;
+
+    let currentIndex = 0;
+    let animationFrame = 0;
+
+    const updateControls = () => {
+      status.textContent = `${currentIndex + 1} / ${slides.length}`;
+      previous.disabled = currentIndex === 0;
+      next.disabled = currentIndex === slides.length - 1;
+    };
+
+    const scrollToSlide = (index: number) => {
+      currentIndex = Math.min(Math.max(index, 0), slides.length - 1);
+      track.scrollTo({
+        left: slides[currentIndex].offsetLeft - track.offsetLeft,
+        behavior: 'smooth',
+      });
+      updateControls();
+    };
+
+    previous.addEventListener('click', () => scrollToSlide(currentIndex - 1));
+    next.addEventListener('click', () => scrollToSlide(currentIndex + 1));
+    track.addEventListener(
+      'scroll',
+      () => {
+        cancelAnimationFrame(animationFrame);
+        animationFrame = requestAnimationFrame(() => {
+          currentIndex = slides.reduce((closestIndex, slide, index) => {
+            const currentPosition = slides[closestIndex].offsetLeft - track.offsetLeft;
+            const candidatePosition = slide.offsetLeft - track.offsetLeft;
+            const currentDistance = Math.abs(currentPosition - track.scrollLeft);
+            const candidateDistance = Math.abs(candidatePosition - track.scrollLeft);
+            return candidateDistance < currentDistance ? index : closestIndex;
+          }, 0);
+          updateControls();
+        });
+      },
+      { passive: true },
+    );
+
+    updateControls();
+  });
+</script>

@@ -12,6 +12,14 @@ const blog = defineCollection({
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
     featured: z.boolean().default(false),
+    slides: z
+      .object({
+        title: z.string().default('Presentation slides'),
+        count: z.number().int().positive(),
+        imageBase: z.string(),
+        downloadHref: z.string(),
+      })
+      .optional(),
   }),
 });
 

@@ -2,6 +2,7 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import SiteNav from '../../components/SiteNav.astro';
+import SlideDeck from '../../components/SlideDeck.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => (import.meta.env.PROD ? !data.draft : true));
@@ -40,6 +41,16 @@ const formattedDate = post.data.publishedAt.toLocaleDateString('en-US', {
         <p class="post-description">{post.data.description}</p>
       </header>
       <div class="post-body">
+        {
+          post.data.slides && (
+            <SlideDeck
+              title={post.data.slides.title}
+              count={post.data.slides.count}
+              imageBase={post.data.slides.imageBase}
+              downloadHref={post.data.slides.downloadHref}
+            />
+          )
+        }
         <Content />
       </div>
     </article>

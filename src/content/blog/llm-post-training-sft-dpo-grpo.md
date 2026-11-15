@@ -1,10 +1,15 @@
 ---
-title: "LLM Post-Training: A Practical Primer on SFT, DPO, and GRPO"
-description: "A practical guide to the three feedback signals behind modern LLM post-training: demonstrations, preferences, and rewards."
+title: "LLM Post-Training for Beginners: SFT, DPO, and GRPO"
+description: "A beginner-friendly guide to the three feedback signals behind modern LLM post-training: demonstrations, preferences, and rewards."
 publishedAt: 2026-11-14
 tags: ["LLM post-training", "Reinforcement learning", "Alignment"]
 draft: false
 featured: true
+slides:
+  title: "LLM Post-Training for Beginners: SFT, DPO, and GRPO"
+  count: 23
+  imageBase: "/images/blog/llm-post-training-sft-dpo-grpo"
+  downloadHref: "/slides/llm-post-training-sft-dpo-grpo.pptx"
 ---
 
 Pretraining gives a language model broad capability. Post-training turns that capability into useful behavior.
@@ -28,13 +33,13 @@ The algorithms differ mainly in step three. That difference changes the data req
 
 Supervised fine-tuning provides a prompt and a high-quality target answer. The model learns to make each demonstrated token more likely.
 
-For a prompt $x$ and target response $y = (y_1, \ldots, y_T)$, the high-level objective is:
+For a prompt $x$ and target response $y = (y_1, \ldots, y_T)$, let $y_{1:t-1}$ denote the target tokens before position $t$. The high-level objective is:
 
 $$
-\max_\theta \sum_{t=1}^{T} \log P_\theta(y_t \mid x, y_{<t})
+\max_{\theta} \sum_{t=1}^{T} \log \pi_{\theta}\!\left(y_t \mid x, y_{1:t-1}\right)
 $$
 
-During training, teacher forcing reveals the correct previous tokens. Every target token contributes a gradient, which makes SFT efficient and stable.
+Here, $\pi_{\theta}$ is the model policy and $\theta$ denotes its trainable parameters. During training, teacher forcing reveals the correct previous tokens. Every target token contributes a gradient, which makes SFT efficient and stable.
 
 ### What SFT does well
 
@@ -55,8 +60,8 @@ Sometimes judging two responses is easier than writing the perfect one. DPO uses
 A useful intuition is:
 
 $$
-\text{increase } \log P_\theta(y_{\text{chosen}} \mid x)
-- \log P_\theta(y_{\text{rejected}} \mid x)
+\text{increase } \log \pi_{\theta}\!\left(y_{\mathrm{chosen}} \mid x\right)
+- \log \pi_{\theta}\!\left(y_{\mathrm{rejected}} \mid x\right)
 $$
 
 The full DPO objective also compares the policy against a fixed reference model. The reference acts as an anchor, discouraging the model from moving too far from its starting behavior while it learns the preference.
@@ -71,13 +76,55 @@ The quality of the method still depends on the preference data. Ambiguous guidel
 
 GRPO starts from a different kind of supervision. For each prompt, the current policy generates a group of candidate responses. A reward function scores them, and the group provides a local baseline for deciding which attempts performed better.
 
-For rewards $r_1, \ldots, r_G$, a simple group-relative advantage is:
+For a prompt $q$, the old policy $\pi_{\theta_{\mathrm{old}}}$ samples a group of $G$ responses $o_1, \ldots, o_G$. Their rewards form the vector $\mathbf{r} = (r_1, \ldots, r_G)$. Under outcome supervision, every token $t$ in response $i$ receives the group-normalized advantage:
 
 $$
-A_i = r_i - \frac{1}{G}\sum_{j=1}^{G} r_j
+\widehat{A}_{i,t}
+= \widetilde{r}_i
+= \frac{r_i - \operatorname{mean}(\mathbf{r})}
+{\operatorname{std}(\mathbf{r})}
 $$
 
-The policy then increases the probability of above-average attempts and decreases the relative probability of below-average attempts. Practical implementations add clipping and often a KL penalty to control the size of the update.
+The subscript $i$ identifies the sampled response, while $t$ identifies a token inside that response. With one outcome reward per response, $\widehat{A}_{i,t}$ has the same value for every token in $o_i$. Implementations must safely handle groups whose reward standard deviation is zero.
+
+Define the per-token probability ratio as:
+
+$$
+\rho_{i,t}(\theta)
+= \frac{
+\pi_{\theta}\!\left(o_{i,t} \mid q, o_{i,1:t-1}\right)
+}{
+\pi_{\theta_{\mathrm{old}}}\!\left(o_{i,t} \mid q, o_{i,1:t-1}\right)
+}
+$$
+
+Leaving the expectation over prompts and sampled groups implicit, the core clipped GRPO objective is:
+
+$$
+\begin{aligned}
+\mathcal{J}_{\mathrm{GRPO}}(\theta)
+&= \frac{1}{G}\sum_{i=1}^{G}\frac{1}{|o_i|}
+\sum_{t=1}^{|o_i|}\\
+&\quad \left[
+\mathcal{L}^{\mathrm{clip}}_{i,t}(\theta)
+- \beta D_{\mathrm{KL}}\!\left(\pi_{\theta}\,\|\,\pi_{\mathrm{ref}}\right)
+\right].
+\end{aligned}
+$$
+
+The clipped term is:
+
+$$
+\begin{aligned}
+\mathcal{L}^{\mathrm{clip}}_{i,t}(\theta)
+= \min\!\Big(&\rho_{i,t}(\theta)\widehat{A}_{i,t},\\
+&\operatorname{clip}\!\left(
+\rho_{i,t}(\theta), 1-\epsilon, 1+\epsilon
+\right)\widehat{A}_{i,t}\Big).
+\end{aligned}
+$$
+
+This clipping limits how far the updated policy can move from the old policy in one step. The KL term, weighted by $\beta$, discourages the policy from drifting too far from the reference model $\pi_{\mathrm{ref}}$. Together, these terms increase the probability of relatively better attempts while keeping the update controlled.
 
 ### Why the group baseline matters
 
