@@ -4,6 +4,7 @@ import rehypeKatex from 'rehype-katex';
 import remarkMath from 'remark-math';
 
 export default defineConfig({
+  site: 'https://zhexjtu.github.io',
   output: 'static',
   markdown: {
     processor: unified({
