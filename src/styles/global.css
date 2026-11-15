@@ -488,6 +488,16 @@ a {
   text-align: center;
 }
 
+.paper-image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+  padding: 0.35rem;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
 .paper-art::after {
   content: "";
   position: absolute;
@@ -774,7 +784,8 @@ a {
   }
 
   .post-art,
-  .paper-art {
+  .paper-art,
+  .paper-image {
     min-height: 110px;
   }
 

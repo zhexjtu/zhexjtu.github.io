@@ -23,8 +23,46 @@ The production-ready static site is generated in `dist/`.
 ## Update the profile
 
 - Personal details, news, social links, and publications: `src/data/site.ts`
-- Profile image: add `public/profile.jpg`, then set `profileImage: '/profile.jpg'` in `src/data/site.ts`
+- Profile image: add `public/images/profile/zhe-wang.jpg`, then set `profileImage: '/images/profile/zhe-wang.jpg'` in `src/data/site.ts`
 - Résumé: replace `public/resume.pdf`
+
+## Images
+
+Keep all website images under `public/images/`:
+
+```text
+public/images/
+├── profile/          # Headshot
+├── publications/     # Paper teaser figures and screenshots
+└── blog/             # Images used in blog posts
+```
+
+Recommended publication filenames are already noted in `src/data/site.ts`:
+
+```text
+public/images/publications/atla.webp
+public/images/publications/hpdt.webp
+public/images/publications/pgrad.webp
+public/images/publications/st-maml.webp
+```
+
+After adding a file, uncomment its `image` property in `src/data/site.ts`. For example:
+
+```ts
+image: '/images/publications/atla.webp',
+```
+
+For publication cards, use a 4:3 teaser figure or cropped screenshot around 1200 × 900 pixels. WebP is preferred for photographs and dense screenshots; PNG is appropriate when small text or line diagrams must remain sharp. Keep each file below roughly 700 KB when practical. A focused paper figure or architecture diagram usually works better than a screenshot of an entire PDF page.
+
+For blog posts, create a directory named after the post and reference images with their public path:
+
+```text
+public/images/blog/practical-guide-to-rlvr/training-loop.webp
+```
+
+```md
+![RLVR training loop](/images/blog/practical-guide-to-rlvr/training-loop.webp)
+```
 
 ## Write a blog post
 

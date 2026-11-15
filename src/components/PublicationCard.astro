@@ -9,7 +9,21 @@ const { publication } = Astro.props;
 ---
 
 <article class="publication-card">
-  <div class:list={['paper-art', `tone-${publication.tone}`]} aria-hidden="true">{publication.art}</div>
+  {
+    publication.image ? (
+      <img
+        class="paper-image"
+        src={publication.image}
+        alt={publication.imageAlt ?? `Figure for ${publication.title}`}
+        loading="lazy"
+        decoding="async"
+      />
+    ) : (
+      <div class:list={['paper-art', `tone-${publication.tone}`]} aria-hidden="true">
+        {publication.art}
+      </div>
+    )
+  }
   <div class="paper-copy">
     <h3>
       {publication.title}

@@ -38,6 +38,8 @@ export type Publication = {
   tags: string[];
   art: string;
   tone: 'charcoal' | 'purple' | 'blue' | 'green';
+  image?: string;
+  imageAlt?: string;
   links: Array<{ label: string; href: string; kind?: 'secondary' }>;
 };
 
@@ -51,6 +53,8 @@ export const publications: Publication[] = [
     tags: ['LLM safety', 'Adversarial ML'],
     art: 'ATLA',
     tone: 'charcoal',
+    // image: '/images/publications/atla.webp',
+    imageAlt: 'Overview figure from Augmented Adversarial Trigger Learning',
     links: [
       { label: 'Paper', href: 'https://aclanthology.org/2025.findings-naacl.394/' },
       { label: 'PDF', href: 'https://aclanthology.org/2025.findings-naacl.394.pdf', kind: 'secondary' },
@@ -66,6 +70,8 @@ export const publications: Publication[] = [
     tags: ['Reinforcement learning', 'Decision transformers'],
     art: 'HPDT',
     tone: 'purple',
+    // image: '/images/publications/hpdt.webp',
+    imageAlt: 'Overview figure from Hierarchical Prompt Decision Transformer',
     links: [
       { label: 'Paper', href: 'https://dl.acm.org/doi/abs/10.1145/3701716.3715233' },
       { label: 'arXiv', href: 'https://arxiv.org/abs/2412.00979', kind: 'secondary' },
@@ -80,6 +86,8 @@ export const publications: Publication[] = [
     tags: ['Domain generalization', 'Optimization'],
     art: 'PGRAD',
     tone: 'blue',
+    // image: '/images/publications/pgrad.webp',
+    imageAlt: 'Overview figure from PGrad',
     links: [
       { label: 'Paper', href: 'https://openreview.net/forum?id=CgCmwcfgEdH' },
       { label: 'Code', href: 'https://github.com/QData/PGrad', kind: 'secondary' },
@@ -94,6 +102,8 @@ export const publications: Publication[] = [
     tags: ['Meta-learning', 'Task heterogeneity'],
     art: 'ST–MAML',
     tone: 'green',
+    // image: '/images/publications/st-maml.webp',
+    imageAlt: 'Overview figure from ST-MAML',
     links: [
       { label: 'Paper', href: 'https://proceedings.mlr.press/v180/wang22c.html' },
       { label: 'PDF', href: 'https://proceedings.mlr.press/v180/wang22c/wang22c.pdf', kind: 'secondary' },
