@@ -58,18 +58,6 @@ export const publications: Publication[] = [
     links: [],
   },
   {
-    title: 'SD-MAR: Multi-image Analytical Reasoning via Synthetic Data and Reinforcement Learning',
-    authors:
-      'Shiyu Yuan, Sourav Sanjukta Bhabesh, <strong>Zhe Wang</strong>, Dmitriy Bespalov, Wesley Rose, Huzefa Rangwala',
-    venue: 'arXiv 2026',
-    summary:
-      'SD-MAR builds controlled multi-image reasoning tasks and uses reinforcement learning to improve comparison, change attribution, and quantitative visual reasoning.',
-    tags: ['Multimodal reasoning', 'Reinforcement learning'],
-    art: 'SD–MAR',
-    tone: 'purple',
-    links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2607.14333' }],
-  },
-  {
     title: 'Reinforcing the Generation Order of Multimodal Masked Diffusion Models',
     authors:
       'Yidong Ouyang, <strong>Zhe Wang</strong>, Sourav Bhabesh, Dmitriy Bespalov',
@@ -160,6 +148,18 @@ export const publications: Publication[] = [
       { label: 'Paper', href: 'https://dl.acm.org/doi/abs/10.1145/3701716.3715233' },
       { label: 'arXiv', href: 'https://arxiv.org/abs/2412.00979', kind: 'secondary' },
     ],
+  },
+  {
+    title: 'SD-MAR: Multi-image Analytical Reasoning via Synthetic Data and Reinforcement Learning',
+    authors:
+      'Shiyu Yuan, Sourav Sanjukta Bhabesh, <strong>Zhe Wang</strong>, Dmitriy Bespalov, Wesley Rose, Huzefa Rangwala',
+    venue: 'arXiv 2026',
+    summary:
+      'SD-MAR builds controlled multi-image reasoning tasks and uses reinforcement learning to improve comparison, change attribution, and quantitative visual reasoning.',
+    tags: ['Multimodal reasoning', 'Reinforcement learning'],
+    art: 'SD–MAR',
+    tone: 'purple',
+    links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2607.14333' }],
   },
   {
     title: 'PGrad: Learning Principal Gradients for Domain Generalization',
