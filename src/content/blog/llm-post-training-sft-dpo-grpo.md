@@ -33,10 +33,10 @@ The algorithms differ mainly in step three. That difference changes the data req
 
 Supervised fine-tuning provides a prompt and a high-quality target answer. The model learns to make each demonstrated token more likely.
 
-For a prompt $x$ and target response $y = (y_1, \ldots, y_T)$, let $y_{1:t-1}$ denote the target tokens before position $t$. The high-level objective is:
+For a prompt $x$ and target response $y = (y_{1}, \ldots, y_{T})$, let $y_{<t} = (y_{1}, \ldots, y_{t-1})$ denote the target tokens before position $t$. The high-level objective is:
 
 $$
-\max_{\theta} \sum_{t=1}^{T} \log \pi_{\theta}\!\left(y_t \mid x, y_{1:t-1}\right)
+\max_{\theta} \sum_{t=1}^{T} \log \pi_{\theta}\!\left(y_{t} \mid x, y_{<t}\right)
 $$
 
 Here, $\pi_{\theta}$ is the model policy and $\theta$ denotes its trainable parameters. During training, teacher forcing reveals the correct previous tokens. Every target token contributes a gradient, which makes SFT efficient and stable.
@@ -76,7 +76,7 @@ The quality of the method still depends on the preference data. Ambiguous guidel
 
 GRPO starts from a different kind of supervision. For each prompt, the current policy generates a group of candidate responses. A reward function scores them, and the group provides a local baseline for deciding which attempts performed better.
 
-For a prompt $q$, the old policy $\pi_{\theta_{\mathrm{old}}}$ samples a group of $G$ responses $o_1, \ldots, o_G$. Their rewards form the vector $\mathbf{r} = (r_1, \ldots, r_G)$. Under outcome supervision, every token $t$ in response $i$ receives the group-normalized advantage:
+For a prompt $q$, the old policy $\pi_{\theta_{\mathrm{old}}}$ samples a group of $G$ responses $o_{1}, \ldots, o_{G}$. Write the $i$-th response as $o_i = (o_{i,1}, \ldots, o_{i,T_i})$ and its prefix before token $t$ as $o_{i,<t} = (o_{i,1}, \ldots, o_{i,t-1})$. The rewards form the vector $\mathbf{r} = (r_{1}, \ldots, r_{G})$. Under outcome supervision, every token $t$ in response $i$ receives the group-normalized advantage:
 
 $$
 \widehat{A}_{i,t}
@@ -92,9 +92,9 @@ Define the per-token probability ratio as:
 $$
 \rho_{i,t}(\theta)
 = \frac{
-\pi_{\theta}\!\left(o_{i,t} \mid q, o_{i,1:t-1}\right)
+\pi_{\theta}\!\left(o_{i,t} \mid q, o_{i,<t}\right)
 }{
-\pi_{\theta_{\mathrm{old}}}\!\left(o_{i,t} \mid q, o_{i,1:t-1}\right)
+\pi_{\theta_{\mathrm{old}}}\!\left(o_{i,t} \mid q, o_{i,<t}\right)
 }
 $$
 
@@ -103,8 +103,8 @@ Leaving the expectation over prompts and sampled groups implicit, the core clipp
 $$
 \begin{aligned}
 \mathcal{J}_{\mathrm{GRPO}}(\theta)
-&= \frac{1}{G}\sum_{i=1}^{G}\frac{1}{|o_i|}
-\sum_{t=1}^{|o_i|}\\
+&= \frac{1}{G}\sum_{i=1}^{G}\frac{1}{T_i}
+\sum_{t=1}^{T_i}\\
 &\quad \left[
 \mathcal{L}^{\mathrm{clip}}_{i,t}(\theta)
 - \beta D_{\mathrm{KL}}\!\left(\pi_{\theta}\,\|\,\pi_{\mathrm{ref}}\right)
@@ -119,7 +119,7 @@ $$
 \mathcal{L}^{\mathrm{clip}}_{i,t}(\theta)
 = \min\!\Big(&\rho_{i,t}(\theta)\widehat{A}_{i,t},\\
 &\operatorname{clip}\!\left(
-\rho_{i,t}(\theta), 1-\epsilon, 1+\epsilon
+\rho_{i,t}(\theta), 1-\varepsilon, 1+\varepsilon
 \right)\widehat{A}_{i,t}\Big).
 \end{aligned}
 $$
