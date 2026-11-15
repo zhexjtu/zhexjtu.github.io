@@ -476,21 +476,85 @@ a {
 .publication-tags {
   display: inline-flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-left: 0.35rem;
+  gap: 0.45rem;
+  margin-left: 0.45rem;
   vertical-align: middle;
 }
 
 .publication-tag {
   display: inline-flex;
-  padding: 0.22rem 0.5rem;
-  color: var(--text-secondary);
-  background: var(--bg-accent);
+  align-items: center;
+  min-height: 1.65rem;
+  padding: 0.28rem 0.68rem;
+  color: var(--tag-color, var(--text-secondary));
+  background: var(--tag-bg, var(--bg-accent));
+  border: 1px solid var(--tag-border, var(--border));
   border-radius: 999px;
-  font-size: 0.62rem;
-  font-weight: 650;
-  letter-spacing: 0.03em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.035em;
   text-transform: uppercase;
+}
+
+.tag-violet {
+  --tag-color: #6d28d9;
+  --tag-bg: #f3e8ff;
+  --tag-border: #ddd6fe;
+}
+
+.tag-amber {
+  --tag-color: #92400e;
+  --tag-bg: #fef3c7;
+  --tag-border: #fde68a;
+}
+
+.tag-blue {
+  --tag-color: #1d4ed8;
+  --tag-bg: #dbeafe;
+  --tag-border: #bfdbfe;
+}
+
+.tag-cyan {
+  --tag-color: #0e7490;
+  --tag-bg: #cffafe;
+  --tag-border: #a5f3fc;
+}
+
+.tag-emerald {
+  --tag-color: #047857;
+  --tag-bg: #d1fae5;
+  --tag-border: #a7f3d0;
+}
+
+.tag-red {
+  --tag-color: #b91c1c;
+  --tag-bg: #fee2e2;
+  --tag-border: #fecaca;
+}
+
+.tag-orange {
+  --tag-color: #c2410c;
+  --tag-bg: #ffedd5;
+  --tag-border: #fed7aa;
+}
+
+.tag-rose {
+  --tag-color: #be123c;
+  --tag-bg: #ffe4e6;
+  --tag-border: #fecdd3;
+}
+
+.tag-indigo {
+  --tag-color: #4338ca;
+  --tag-bg: #e0e7ff;
+  --tag-border: #c7d2fe;
+}
+
+.tag-teal {
+  --tag-color: #0f766e;
+  --tag-bg: #ccfbf1;
+  --tag-border: #99f6e4;
 }
 
 .paper-authors,

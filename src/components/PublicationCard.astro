@@ -6,6 +6,30 @@ interface Props {
 }
 
 const { publication } = Astro.props;
+
+const tagColorClasses: Record<string, string> = {
+  'LLM post-training': 'tag-violet',
+  'Multi-turn RL': 'tag-amber',
+  'Multimodal generation': 'tag-blue',
+  GRPO: 'tag-violet',
+  'Masked diffusion': 'tag-cyan',
+  'Self-correction': 'tag-emerald',
+  'LLM safety': 'tag-red',
+  'Automated red teaming': 'tag-orange',
+  'Adversarial ML': 'tag-rose',
+  Fuzzing: 'tag-amber',
+  'Reinforcement learning': 'tag-violet',
+  'Decision transformers': 'tag-indigo',
+  'Time series': 'tag-cyan',
+  Transformers: 'tag-indigo',
+  'Multimodal reasoning': 'tag-blue',
+  'Domain generalization': 'tag-emerald',
+  Optimization: 'tag-amber',
+  Interpretability: 'tag-teal',
+  'Graph learning': 'tag-blue',
+  'Meta-learning': 'tag-indigo',
+  'Task heterogeneity': 'tag-orange',
+};
 ---
 
 <article class="publication-card">
@@ -28,7 +52,11 @@ const { publication } = Astro.props;
     <h3>
       {publication.title}
       <span class="publication-tags">
-        {publication.tags.map((tag) => <span class="publication-tag">{tag}</span>)}
+        {
+          publication.tags.map((tag) => (
+            <span class:list={['publication-tag', tagColorClasses[tag]]}>{tag}</span>
+          ))
+        }
       </span>
     </h3>
     <p class="paper-authors" set:html={publication.authors} />
