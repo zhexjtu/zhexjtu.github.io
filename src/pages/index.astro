@@ -5,7 +5,7 @@ import Hero from '../components/Hero.astro';
 import PostCard from '../components/PostCard.astro';
 import PublicationCard from '../components/PublicationCard.astro';
 import SectionHeading from '../components/SectionHeading.astro';
-import { news, profile, publications } from '../data/site';
+import { profile, publications } from '../data/site';
 
 const posts = (
   await getCollection('blog', ({ data }) => (import.meta.env.PROD ? !data.draft : true))
@@ -17,24 +17,6 @@ const recentPosts = posts.slice(0, 3);
 <BaseLayout title={profile.name} description={profile.intro}>
   <main class="site-shell">
     <Hero />
-
-    <section class="section-block" aria-labelledby="news-heading">
-      <SectionHeading title="News" id="news-heading" />
-      <div class="news-list">
-        {
-          news.map((item) => (
-            <article class="news-item">
-              <strong>[{item.date}]</strong>{' '}
-              {item.href ? (
-                <a href={item.href} target="_blank" rel="noreferrer">{item.text}</a>
-              ) : (
-                item.text
-              )}
-            </article>
-          ))
-        }
-      </div>
-    </section>
 
     <section class="section-block" aria-labelledby="blog-heading">
       <SectionHeading title="Blog" id="blog-heading" linkLabel="View all posts" linkHref="/blog/" />

@@ -9,27 +9,6 @@ export const profile = {
   profileImage: '/images/profile/zhe.png' as string | null,
 };
 
-export const news = [
-  {
-    date: '2026',
-    text: 'Co-organized the KDD 2026 hands-on tutorial on multi-turn reinforcement learning for large language models.',
-  },
-  {
-    date: '2025',
-    text: 'Published Augmented Adversarial Trigger Learning at Findings of NAACL 2025.',
-    href: 'https://aclanthology.org/2025.findings-naacl.394/',
-  },
-  {
-    date: '2025',
-    text: 'Published Hierarchical Prompt Decision Transformer at The Web Conference 2025.',
-    href: 'https://arxiv.org/abs/2412.00979',
-  },
-  {
-    date: 'Jun 2024',
-    text: 'Joined Amazon as an Applied Scientist II.',
-  },
-];
-
 export type Publication = {
   title: string;
   authors: string;
