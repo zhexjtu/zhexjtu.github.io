@@ -137,6 +137,22 @@ export const publications: Publication[] = [
     ],
   },
   {
+    title: 'Long-Range Transformers for Dynamic Spatiotemporal Forecasting',
+    authors: 'Jake Grigsby, <strong>Zhe Wang</strong>, Nam Nguyen, Yanjun Qi',
+    venue: 'arXiv 2021',
+    summary:
+      'Spacetimeformer represents each variable at each timestep as a token, allowing long-range Transformers to learn spatial and temporal relationships jointly.',
+    tags: ['Time series', 'Transformers'],
+    art: 'SPACE\nTIME',
+    tone: 'blue',
+    image: '/images/publications/LongRangeTransformer.png',
+    imageAlt: 'Comparison of temporal, spatial graph, and spatiotemporal attention for forecasting',
+    links: [
+      { label: 'arXiv', href: 'https://arxiv.org/abs/2109.12218' },
+      { label: 'Code', href: 'https://github.com/QData/spacetimeformer', kind: 'secondary' },
+    ],
+  },
+  {
     title: 'SD-MAR: Multi-image Analytical Reasoning via Synthetic Data and Reinforcement Learning',
     authors:
       'Shiyu Yuan, Sourav Sanjukta Bhabesh, <strong>Zhe Wang</strong>, Dmitriy Bespalov, Wesley Rose, Huzefa Rangwala',
@@ -199,22 +215,6 @@ export const publications: Publication[] = [
     links: [
       { label: 'Paper', href: 'https://proceedings.mlr.press/v180/wang22c.html' },
       { label: 'PDF', href: 'https://proceedings.mlr.press/v180/wang22c/wang22c.pdf', kind: 'secondary' },
-    ],
-  },
-  {
-    title: 'Long-Range Transformers for Dynamic Spatiotemporal Forecasting',
-    authors: 'Jake Grigsby, <strong>Zhe Wang</strong>, Nam Nguyen, Yanjun Qi',
-    venue: 'arXiv 2021',
-    summary:
-      'Spacetimeformer represents each variable at each timestep as a token, allowing long-range Transformers to learn spatial and temporal relationships jointly.',
-    tags: ['Time series', 'Transformers'],
-    art: 'SPACE\nTIME',
-    tone: 'blue',
-    image: '/images/publications/LongRangeTransformer.png',
-    imageAlt: 'Comparison of temporal, spatial graph, and spatiotemporal attention for forecasting',
-    links: [
-      { label: 'arXiv', href: 'https://arxiv.org/abs/2109.12218' },
-      { label: 'Code', href: 'https://github.com/QData/spacetimeformer', kind: 'secondary' },
     ],
   },
 ];
