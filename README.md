@@ -41,22 +41,22 @@ Current publication figures:
 
 ```text
 public/images/publications/ATLA.png
+public/images/publications/FreeCorrection.png
+public/images/publications/GAP.png
 public/images/publications/HPDT.png
+public/images/publications/LongRangeTransformer.png
+public/images/publications/Order.png
 public/images/publications/PGrad.png
+public/images/publications/SD-MAR.png
+public/images/publications/STMAML.png
+public/images/publications/TurboFuzz.png
+public/images/publications/WIGRAPH.png
 ```
 
-Suggested filenames for the remaining publication rows:
+The KDD multi-turn RL tutorial is the only remaining row without a figure. A suggested filename is:
 
 ```text
 kdd-multiturn-rl.png
-sd-mar.png
-generation-order.png
-free-correction.png
-gap.png
-turbofuzzllm.png
-wigraph.png
-st-maml.png
-spacetimeformer.png
 ```
 
 After adding another figure, add its `image` property in `src/data/site.ts`. For example:

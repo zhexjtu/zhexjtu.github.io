@@ -46,6 +46,8 @@ export const publications: Publication[] = [
     tags: ['Multimodal generation', 'GRPO'],
     art: 'ORDER',
     tone: 'blue',
+    image: '/images/publications/Order.png',
+    imageAlt: 'Control block for learning the generation order of multimodal masked diffusion models',
     links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2607.08056' }],
   },
   {
@@ -58,6 +60,8 @@ export const publications: Publication[] = [
     tags: ['Masked diffusion', 'Self-correction'],
     art: 'FREE\nCORRECTION',
     tone: 'green',
+    image: '/images/publications/FreeCorrection.png',
+    imageAlt: 'Probability comparison for correct and flipped tokens during self-correction',
     links: [
       { label: 'arXiv', href: 'https://arxiv.org/abs/2602.02927' },
       { label: 'Code', href: 'https://github.com/huge123/FreeCorrection', kind: 'secondary' },
@@ -74,6 +78,8 @@ export const publications: Publication[] = [
     tags: ['LLM safety', 'Automated red teaming'],
     art: 'GAP',
     tone: 'purple',
+    image: '/images/publications/GAP.png',
+    imageAlt: 'Comparison of tree-based attack search and Graph of Attacks with Pruning',
     links: [
       { label: 'Paper', href: 'https://aclanthology.org/2025.emnlp-industry.46/' },
       { label: 'PDF', href: 'https://aclanthology.org/2025.emnlp-industry.46.pdf', kind: 'secondary' },
@@ -106,6 +112,8 @@ export const publications: Publication[] = [
     tags: ['LLM safety', 'Fuzzing'],
     art: 'TURBO\nFUZZ',
     tone: 'green',
+    image: '/images/publications/TurboFuzz.png',
+    imageAlt: 'Overview of the TurboFuzzLLM mutation-based fuzzing workflow',
     links: [
       { label: 'Paper', href: 'https://aclanthology.org/2025.naacl-industry.43/' },
       { label: 'Code', href: 'https://github.com/amazon-science/TurboFuzzLLM', kind: 'secondary' },
@@ -138,6 +146,8 @@ export const publications: Publication[] = [
     tags: ['Multimodal reasoning', 'Reinforcement learning'],
     art: 'SD–MAR',
     tone: 'purple',
+    image: '/images/publications/SD-MAR.png',
+    imageAlt: 'SD-MAR synthetic data pipeline and multi-image analytical reasoning sample',
     links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2607.14333' }],
   },
   {
@@ -166,6 +176,8 @@ export const publications: Publication[] = [
     tags: ['Interpretability', 'Graph learning'],
     art: 'WIGRAPH',
     tone: 'charcoal',
+    image: '/images/publications/WIGRAPH.png',
+    imageAlt: 'WIGRAPH word interaction graph layer and prediction model',
     links: [
       {
         label: 'PDF',
@@ -182,6 +194,7 @@ export const publications: Publication[] = [
     tags: ['Meta-learning', 'Task heterogeneity'],
     art: 'ST–MAML',
     tone: 'green',
+    image: '/images/publications/STMAML.png',
     imageAlt: 'Overview figure from ST-MAML',
     links: [
       { label: 'Paper', href: 'https://proceedings.mlr.press/v180/wang22c.html' },
@@ -197,6 +210,8 @@ export const publications: Publication[] = [
     tags: ['Time series', 'Transformers'],
     art: 'SPACE\nTIME',
     tone: 'blue',
+    image: '/images/publications/LongRangeTransformer.png',
+    imageAlt: 'Comparison of temporal, spatial graph, and spatiotemporal attention for forecasting',
     links: [
       { label: 'arXiv', href: 'https://arxiv.org/abs/2109.12218' },
       { label: 'Code', href: 'https://github.com/QData/spacetimeformer', kind: 'secondary' },
