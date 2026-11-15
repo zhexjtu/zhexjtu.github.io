@@ -8,6 +8,16 @@ import { profile } from '../data/site';
     <a class="button-primary" href="/blog/">Blog <span aria-hidden="true">↗</span></a>
   </nav>
 
+  {
+    profile.profileImage ? (
+      <img class="profile-image" src={profile.profileImage} alt={`Portrait of ${profile.name}`} />
+    ) : (
+      <div class="profile-visual" aria-label="Profile photo placeholder">
+        <span>PROFILE PHOTO</span>
+      </div>
+    )
+  }
+
   <div class="hero-copy">
     <h1 id="profile-name">{profile.name}</h1>
     <p class="hero-role">{profile.role}</p>
@@ -25,14 +35,4 @@ import { profile } from '../data/site';
       </a>
     </div>
   </div>
-
-  {
-    profile.profileImage ? (
-      <img class="profile-image" src={profile.profileImage} alt={`Portrait of ${profile.name}`} />
-    ) : (
-      <div class="profile-visual" aria-label="Profile photo placeholder">
-        <span>PROFILE PHOTO</span>
-      </div>
-    )
-  }
 </section>

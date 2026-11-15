@@ -168,7 +168,7 @@ a {
 .hero-copy {
   flex: 1 1 560px;
   min-width: 0;
-  text-align: center;
+  text-align: left;
 }
 
 .hero-copy h1 {
@@ -185,7 +185,7 @@ a {
 }
 
 .hero-role {
-  margin: 0 auto 0.65rem;
+  margin: 0 0 0.65rem;
   color: var(--text-primary);
   font-size: 0.92rem;
   font-weight: 600;
@@ -195,7 +195,7 @@ a {
 
 .hero-intro {
   max-width: 620px;
-  margin: 0 auto;
+  margin: 0;
   color: var(--text-secondary);
   font-size: 1.08rem;
   line-height: 1.75;
@@ -203,7 +203,7 @@ a {
 
 .social-links {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 0.75rem;
   margin-top: 1.85rem;
 }
@@ -739,18 +739,43 @@ a {
   }
 
   .hero-card {
-    flex-direction: column-reverse;
-    gap: 2rem;
-    padding: 5.25rem 1.5rem 2rem;
+    flex-direction: row;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 5.25rem 1.25rem 2rem;
   }
 
   .profile-visual,
   .profile-image {
-    width: min(240px, 100%);
+    width: min(34vw, 170px);
+  }
+
+  .hero-copy {
+    flex: 1 1 auto;
+  }
+
+  .hero-copy h1 {
+    margin-bottom: 0.8rem;
+    font-size: clamp(2rem, 8vw, 2.7rem);
+  }
+
+  .hero-role {
+    font-size: 0.75rem;
   }
 
   .hero-intro {
-    font-size: 1rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .social-links {
+    gap: 0.5rem;
+    margin-top: 1.25rem;
+  }
+
+  .social-link {
+    width: 2.5rem;
+    height: 2.5rem;
   }
 
   .section-block {
