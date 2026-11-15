@@ -408,16 +408,6 @@ a {
   font-weight: 600;
 }
 
-.publication-intro {
-  margin: -0.35rem 0 2rem;
-  color: var(--text-secondary);
-}
-
-.publication-intro a {
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
 .publication-list {
   display: grid;
   gap: 0;

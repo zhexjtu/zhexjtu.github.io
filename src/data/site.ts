@@ -1,8 +1,8 @@
 export const profile = {
   name: 'Zhe Wang',
-  role: 'Applied Scientist II at Amazon',
+  role: 'Researcher at Amazon',
   intro:
-    'I work on LLM post-training and model customization, reinforcement learning, AI safety, and multimodal model evaluation.',
+    'I work on LLM post-training and model customization, reinforcement learning, and AI safety.',
   email: 'zw6sg@virginia.edu',
   linkedin: 'https://www.linkedin.com/in/zhe-wang-119639170/',
   scholar: 'https://scholar.google.com/citations?user=fqNkQjgAAAAJ&hl=en',
