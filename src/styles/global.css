@@ -173,6 +173,7 @@ a {
 
 .hero-copy h1 {
   margin: 0 0 1.25rem;
+  padding-bottom: 0.1em;
   color: var(--text-primary);
   font-size: clamp(2.5rem, 6vw, 3.4rem);
   font-weight: 700;

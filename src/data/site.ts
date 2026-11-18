@@ -2,7 +2,7 @@ export const profile = {
   name: 'Zhe Wang',
   role: 'Researcher at Amazon',
   intro:
-    'I work on LLM post-training and model customization, reinforcement learning, and AI safety.',
+    'I work on LLM post-training and model customization, reinforcement learning, and AI safety. I received my Ph.D. in Computer Science from the University of Virginia in 2024, advised by Dr. Yanjun Qi.',
   email: 'zw6sg@virginia.edu',
   linkedin: 'https://www.linkedin.com/in/zhe-wang-119639170/',
   scholar: 'https://scholar.google.com/citations?user=fqNkQjgAAAAJ&hl=en',
@@ -34,6 +34,8 @@ export const publications: Publication[] = [
     tags: ['LLM Post-training', 'RL'],
     art: 'KDD\n2026',
     tone: 'charcoal',
+    image: '/images/publications/KDD.png',
+    imageAlt: 'SageMaker AI multi-turn reinforcement learning service overview',
     links: [],
   },
   {
