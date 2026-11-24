@@ -56,7 +56,7 @@ export const publications: Publication[] = [
     title: 'Training-Free Self-Correction for Multimodal Masked Diffusion Models',
     authors:
       'Yidong Ouyang, Panwen Hu, Zhengyan Wan, <strong>Zhe Wang</strong>, Liyan Xie, Dmitriy Bespalov, Ying Nian Wu, Guang Cheng, Hongyuan Zha, Qiang Sun',
-    venue: 'arXiv 2026',
+    venue: 'TMLR 2026',
     summary:
       'A training-free framework lets multimodal masked diffusion models revisit uncertain tokens during sampling, reducing error accumulation without auxiliary evaluators.',
     tags: ['Masked Diffusion Model', 'Self-Correction'],
