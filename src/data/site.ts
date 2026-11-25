@@ -24,6 +24,23 @@ export type Publication = {
 
 export const publications: Publication[] = [
   {
+    title: 'Training-Free Self-Correction for Multimodal Masked Diffusion Models',
+    authors:
+      'Yidong Ouyang, Panwen Hu, Zhengyan Wan, <strong>Zhe Wang</strong>, Liyan Xie, Dmitriy Bespalov, Ying Nian Wu, Guang Cheng, Hongyuan Zha, Qiang Sun',
+    venue: 'TMLR 2026',
+    summary:
+      'A training-free framework lets multimodal masked diffusion models revisit uncertain tokens during sampling, reducing error accumulation without auxiliary evaluators.',
+    tags: ['Masked Diffusion Model', 'Self-Correction'],
+    art: 'FREE\nCORRECTION',
+    tone: 'green',
+    image: '/images/publications/FreeCorrection.png',
+    imageAlt: 'Probability comparison for correct and flipped tokens during self-correction',
+    links: [
+      { label: 'arXiv', href: 'https://arxiv.org/abs/2602.02927' },
+      { label: 'Code', href: 'https://github.com/huge123/FreeCorrection', kind: 'secondary' },
+    ],
+  },
+  {
     title:
       'Multi-Turn Reinforcement Learning for Large Language Models: From Theory to Practice with Amazon SageMaker AI',
     authors:
@@ -51,23 +68,6 @@ export const publications: Publication[] = [
     image: '/images/publications/Order.png',
     imageAlt: 'Control block for learning the generation order of multimodal masked diffusion models',
     links: [{ label: 'arXiv', href: 'https://arxiv.org/abs/2607.08056' }],
-  },
-  {
-    title: 'Training-Free Self-Correction for Multimodal Masked Diffusion Models',
-    authors:
-      'Yidong Ouyang, Panwen Hu, Zhengyan Wan, <strong>Zhe Wang</strong>, Liyan Xie, Dmitriy Bespalov, Ying Nian Wu, Guang Cheng, Hongyuan Zha, Qiang Sun',
-    venue: 'TMLR 2026',
-    summary:
-      'A training-free framework lets multimodal masked diffusion models revisit uncertain tokens during sampling, reducing error accumulation without auxiliary evaluators.',
-    tags: ['Masked Diffusion Model', 'Self-Correction'],
-    art: 'FREE\nCORRECTION',
-    tone: 'green',
-    image: '/images/publications/FreeCorrection.png',
-    imageAlt: 'Probability comparison for correct and flipped tokens during self-correction',
-    links: [
-      { label: 'arXiv', href: 'https://arxiv.org/abs/2602.02927' },
-      { label: 'Code', href: 'https://github.com/huge123/FreeCorrection', kind: 'secondary' },
-    ],
   },
   {
     title:
